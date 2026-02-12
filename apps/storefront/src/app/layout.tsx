@@ -5,7 +5,7 @@ import './globals.css';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { SearchBar } from '@/components/search/search-bar';
 import { ShoppingBag, Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,16 +25,18 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* Header */}
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-16 items-center gap-4">
+          {/* Mobile Header */}
+          <div className="container flex h-16 items-center md:hidden">
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <Button variant="ghost" size="icon" className="shrink-0">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Abrir menú</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[240px]">
+                <SheetTitle className="sr-only">Menú de navegación</SheetTitle>
                 <nav className="flex flex-col gap-4 mt-8">
                   <Link
                     href="/"
@@ -53,18 +55,37 @@ export default function RootLayout({
             </Sheet>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <ShoppingBag className="h-6 w-6" />
-              <span className="text-lg font-bold sm:text-xl">E-commerce Store</span>
+            <Link href="/" className="flex items-center gap-2 flex-1">
+              <ShoppingBag className="h-6 w-6 shrink-0" />
+              <span className="text-lg font-bold">E-commerce Store</span>
             </Link>
 
-            {/* Search Bar - Hidden on small mobile, visible on sm+ */}
-            <div className="flex-1 max-w-md hidden sm:block">
+            {/* Cart Drawer */}
+            <div className="shrink-0">
+              <CartDrawer />
+            </div>
+          </div>
+
+          {/* Mobile Search Row */}
+          <div className="container pb-3 md:hidden">
+            <SearchBar />
+          </div>
+
+          {/* Desktop Header */}
+          <div className="container hidden md:flex h-16 items-center gap-6">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 shrink-0">
+              <ShoppingBag className="h-6 w-6" />
+              <span className="text-xl font-bold">E-commerce Store</span>
+            </Link>
+
+            {/* Search Bar */}
+            <div className="flex-1 max-w-md">
               <SearchBar />
             </div>
 
             {/* Desktop Nav */}
-            <nav className="items-center gap-6 hidden md:flex">
+            <nav className="flex items-center gap-6 shrink-0">
               <Link href="/" className="text-sm font-medium hover:underline">
                 Inicio
               </Link>
@@ -74,12 +95,9 @@ export default function RootLayout({
             </nav>
 
             {/* Cart Drawer */}
-            <CartDrawer />
-          </div>
-
-          {/* Search Bar - Mobile only row */}
-          <div className="container sm:hidden pb-3">
-            <SearchBar />
+            <div className="shrink-0">
+              <CartDrawer />
+            </div>
           </div>
         </header>
 
