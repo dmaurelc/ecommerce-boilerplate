@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2026-02-12
+
+### Fixed
+- 🔧 **Desktop Header Layout Distribution**
+  - Logo a la izquierda con espaciado fijo (mr-6)
+  - Barra de búsqueda centrada con flex-1 y max-w-xl
+  - Sección derecha agrupada: Nav + Carrito con espaciado fijo (ml-6)
+  - Logo móvil centrado con flex-1 y justify-center
+  - Mejor balance visual con espaciado proper
+
+---
+
 ## [1.2.2] - 2026-02-12
 
 ### Fixed
