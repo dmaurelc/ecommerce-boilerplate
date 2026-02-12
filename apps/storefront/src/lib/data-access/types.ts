@@ -5,6 +5,7 @@ export interface IProductsRepository {
   findById(id: string): Promise<Product | null>;
   findBySlug(slug: string): Promise<Product | null>;
   search(query: string): Promise<Product[]>;
+  getCategories(): Promise<Array<{ id: string; name: string; slug: string }>>;
 }
 
 export interface ICartRepository {

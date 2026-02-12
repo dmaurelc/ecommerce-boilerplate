@@ -22,6 +22,11 @@ class ShopifyProductsRepository implements IProductsRepository {
     // Shopify Storefront API call
     return [];
   }
+
+  async getCategories(): Promise<Array<{ id: string; name: string; slug: string }>> {
+    // Shopify Storefront API call for categories
+    return [];
+  }
 }
 
 // Implementaciones similares para Cart, Orders, Users...

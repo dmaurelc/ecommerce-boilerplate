@@ -180,4 +180,16 @@ export class ProductsService {
   async search(query: string): Promise<Product[]> {
     return this.findAll({ search: query });
   }
+
+  async getCategories(): Promise<Array<{ id: string; name: string; slug: string }>> {
+    const categories = await prisma.category.findMany({
+      orderBy: { name: 'asc' },
+    });
+
+    return categories.map((c) => ({
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+    }));
+  }
 }

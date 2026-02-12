@@ -4,7 +4,8 @@ import { Cart } from '@ecommerce/shared';
 @Injectable()
 export class CartService {
   async getCart(cartId?: string): Promise<Cart> {
-    // TODO: Implementar con Prisma
+    // TODO: Implementar con Prisma - temporarily returning mock data
+    // Note: Prisma types are causing build issues that need more time to resolve
     return {
       id: cartId || 'new',
       items: [],

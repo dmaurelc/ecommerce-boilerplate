@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingBag, Star, Truck } from 'lucide-react';
-import { CartDrawer } from '@/components/cart/cart-drawer';
+import { Star, Truck, ShoppingBag } from 'lucide-react';
+import Link from 'next/link';
 import { products } from '@/lib/data-access';
 
 async function getProducts() {
@@ -25,26 +25,7 @@ export default async function HomePage() {
   const productsData = await getProducts();
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ShoppingBag className="h-6 w-6" />
-            <span className="text-xl font-bold">E-commerce Store</span>
-          </div>
-          <nav className="flex items-center gap-6">
-            <a href="/" className="text-sm font-medium hover:underline">
-              Inicio
-            </a>
-            <a href="/products" className="text-sm font-medium hover:underline">
-              Productos
-            </a>
-            <CartDrawer />
-          </nav>
-        </div>
-      </header>
-
+    <>
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-16">
         <div className="container">
@@ -56,7 +37,9 @@ export default async function HomePage() {
               Descubre lo último en tecnología con envíos a todo Chile
             </p>
             <div className="mt-8 flex justify-center gap-4">
-              <Button size="lg">Ver Productos</Button>
+              <Button size="lg" asChild>
+                <Link href="/products">Ver Productos</Link>
+              </Button>
               <Button size="lg" variant="outline">
                 Ofertas
               </Button>
@@ -108,69 +91,64 @@ export default async function HomePage() {
             {productsData.map((product) => {
               const mainImage = product.images?.[0];
               return (
-                <Card key={product.id} className="group overflow-hidden transition-all hover:shadow-lg">
-                  <CardHeader className="p-0">
-                    <div className="aspect-square overflow-hidden bg-muted">
-                      <img
-                        src={mainImage?.url || '/placeholder.jpg'}
-                        alt={mainImage?.altText || product.name}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                      />
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    {product.category && (
-                      <div className="mb-2">
-                        <Badge variant="secondary">{product.category.name}</Badge>
+                <Link key={product.id} href={`/product/${product.slug}`}>
+                  <Card className="group overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
+                    <CardHeader className="p-0">
+                      <div className="aspect-square overflow-hidden bg-muted">
+                        <img
+                          src={mainImage?.url || '/placeholder.jpg'}
+                          alt={mainImage?.altText || product.name}
+                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        />
                       </div>
-                    )}
-                    <CardTitle className="line-clamp-1 text-lg">
-                      {product.name}
-                    </CardTitle>
-                    <CardDescription className="mt-1 line-clamp-2">
-                      {product.description}
-                    </CardDescription>
-                    <div className="mt-3 flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">4.5</span>
-                      <span className="text-sm text-muted-foreground">
-                        ({Math.floor(Math.random() * 100) + 20} reviews)
-                      </span>
-                    </div>
-                    <div className="mt-3 flex items-baseline gap-2">
-                      <span className="text-2xl font-bold text-primary">
-                        {formatPrice(product.price)}
-                      </span>
-                      {product.compareAtPrice && (
-                        <span className="text-sm text-muted-foreground line-through">
-                          {formatPrice(product.compareAtPrice)}
-                        </span>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      {product.category && (
+                        <div className="mb-2">
+                          <Badge variant="secondary">{product.category.name}</Badge>
+                        </div>
                       )}
-                    </div>
-                    {product.stock && product.stock < 5 && (
-                      <Badge variant="destructive" className="mt-2">
-                        ¡Solo {product.stock} disponibles!
-                      </Badge>
-                    )}
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0">
-                    <Button className="w-full">
-                      Agregar al Carrito
-                    </Button>
-                  </CardFooter>
-                </Card>
+                      <CardTitle className="line-clamp-1 text-lg">
+                        {product.name}
+                      </CardTitle>
+                      <CardDescription className="mt-1 line-clamp-2">
+                        {product.description}
+                      </CardDescription>
+                      <div className="mt-3 flex items-center gap-1">
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <span className="text-sm font-medium">4.5</span>
+                        <span className="text-sm text-muted-foreground">
+                          ({Math.floor(Math.random() * 100) + 20} reviews)
+                        </span>
+                      </div>
+                      <div className="mt-3 flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-primary">
+                          {formatPrice(product.price)}
+                        </span>
+                        {product.compareAtPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(product.compareAtPrice)}
+                          </span>
+                        )}
+                      </div>
+                      {product.stock && product.stock < 5 && (
+                        <Badge variant="destructive" className="mt-2">
+                          ¡Solo {product.stock} disponibles!
+                        </Badge>
+                      )}
+                    </CardContent>
+                    <CardFooter className="p-4 pt-0">
+                      <Button className="w-full">
+                        Ver Detalles
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t py-8">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2024 E-commerce Store. Todos los derechos reservados.</p>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

@@ -29,6 +29,11 @@ class NestJSProductsRepository implements IProductsRepository {
     const { data } = await apiClient.get('/products/search', { params: { q: query } });
     return data;
   }
+
+  async getCategories(): Promise<Array<{ id: string; name: string; slug: string }>> {
+    const { data } = await apiClient.get('/products/categories');
+    return data;
+  }
 }
 
 class NestJSCartRepository implements ICartRepository {
