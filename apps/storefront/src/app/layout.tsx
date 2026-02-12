@@ -55,7 +55,7 @@ export default function RootLayout({
             </Sheet>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-1">
+            <Link href="/" className="flex items-center gap-2 flex-1 justify-center">
               <ShoppingBag className="h-6 w-6 shrink-0" />
               <span className="text-lg font-bold">E-commerce Store</span>
             </Link>
@@ -72,30 +72,28 @@ export default function RootLayout({
           </div>
 
           {/* Desktop Header */}
-          <div className="container hidden md:flex h-16 items-center gap-6">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 shrink-0">
+          <div className="container hidden md:flex h-16 items-center">
+            {/* Logo - Left */}
+            <Link href="/" className="flex items-center gap-2 shrink-0 mr-6">
               <ShoppingBag className="h-6 w-6" />
               <span className="text-xl font-bold">E-commerce Store</span>
             </Link>
 
-            {/* Search Bar */}
-            <div className="flex-1 max-w-md">
+            {/* Search Bar - Center/Expandable */}
+            <div className="flex-1 max-w-xl mx-auto">
               <SearchBar />
             </div>
 
-            {/* Desktop Nav */}
-            <nav className="flex items-center gap-6 shrink-0">
-              <Link href="/" className="text-sm font-medium hover:underline">
-                Inicio
-              </Link>
-              <Link href="/products" className="text-sm font-medium hover:underline">
-                Productos
-              </Link>
-            </nav>
-
-            {/* Cart Drawer */}
-            <div className="shrink-0">
+            {/* Right Section: Nav + Cart */}
+            <div className="flex items-center gap-6 shrink-0 ml-6">
+              <nav className="flex items-center gap-6">
+                <Link href="/" className="text-sm font-medium hover:underline">
+                  Inicio
+                </Link>
+                <Link href="/products" className="text-sm font-medium hover:underline">
+                  Productos
+                </Link>
+              </nav>
               <CartDrawer />
             </div>
           </div>
