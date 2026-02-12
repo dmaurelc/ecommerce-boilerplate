@@ -1,0 +1,27 @@
+{
+  "name": "@ecommerce/database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "generate": "prisma generate",
+    "push": "prisma db push",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio",
+    "reset": "prisma migrate reset",
+    "seed": "tsx prisma/seeds/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.1"
+  },
+  "devDependencies": {
+    "@ecommerce/config": "workspace:*",
+    "prisma": "^5.8.1",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0"
+  }
+}

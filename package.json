@@ -1,0 +1,39 @@
+{
+  "name": "ecommerce-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Professional E-commerce Monorepo with Turborepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "db:generate": "cd packages/database && pnpm run generate",
+    "db:push": "cd packages/database && pnpm run push",
+    "db:migrate": "cd packages/database && pnpm run migrate",
+    "db:studio": "cd packages/database && pnpm run studio",
+    "db:seed": "cd packages/database && pnpm run seed",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "tsx": "^4.7.0",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.14.0"
+}
