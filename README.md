@@ -59,6 +59,29 @@ cp .env.example .env.local
 | `pnpm db:studio` | Abre Prisma Studio |
 | `pnpm docker:up` | Inicia servicios Docker |
 
+## 🛒️ Características
+
+### Catálogo de Productos
+- ✅ Homepage con productos destacados
+- ✅ Listado de productos con filtros por categoría
+- ✅ Ficha de producto con galería de imágenes
+- ✅ Selector de variantes (tamaño, color, etc.)
+- ✅ Productos relacionados de la misma categoría
+- ✅ **Búsqueda de productos con sugerencias en tiempo real**
+
+### Carrito de Compras
+- ✅ Agregar/eliminar productos del carrito
+- ✅ Actualizar cantidades
+- ✅ Persistencia en localStorage
+- ✅ Cálculo automático de IVA (19% Chile)
+- ✅ Drawer con resumen de compra
+
+### Checkout
+- ✅ Proceso en 3 pasos (Envío → Pago → Confirmación)
+- ✅ Formulario de dirección de envío
+- ✅ Selección de método de pago (Webpay/MercadoPago)
+- ✅ Página de confirmación de pedido
+
 ## 🏛️ Características de Arquitectura
 
 ### Patrón Data Access Layer
