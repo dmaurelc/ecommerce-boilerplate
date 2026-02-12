@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-02-12
+
+### Added
+- ✅ **Orders Service Backend** - Implementación completa del servicio de órdenes
+  - `createOrder()` - Crear orden con items, transacción de Prisma
+  - `findById()` - Obtener orden por ID con items completos
+  - `findByCustomer()` - Listado de órdenes por cliente
+  - `updateStatus()` - Cambiar estado de orden (PENDING → PAID → SHIPPED)
+  - `updatePaymentStatus()` - Actualizar estado de pago
+  - Generador de número de orden único (ORD-YYYY-XXXXXX)
+  - Soporte para guest checkout (crea usuario temporal)
+  - DTOs con validación (CreateOrderDto, CreateOrderItemDto, AddressDto)
+
+### Changed
+- Actualizado tipo `Order` en shared para incluir `customer`, `notes`
+- Actualizado tipo `OrderItem` para incluir `orderId`, `product`, `variant`
+- Controller con endpoints adicionales para actualizar estado
+
+### Technical Details
+- **Archivos**: `apps/api/src/modules/orders/`
+- **Transacciones**: Prisma `$transaction` para crear orden + items atómicamente
+- **Validación**: class-validator + class-transformer para DTOs
+- **Errores**: NotFoundException, BadRequestException
+
+---
+
 ## [1.2.3] - 2026-02-12
 
 ### Fixed

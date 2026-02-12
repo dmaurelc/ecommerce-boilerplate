@@ -82,6 +82,15 @@ cp .env.example .env.local
 - ✅ Selección de método de pago (Webpay/MercadoPago)
 - ✅ Página de confirmación de pedido
 
+### Backend API (Órdenes)
+- ✅ POST `/api/orders` - Crear orden con items y dirección
+- ✅ GET `/api/orders/:id` - Obtener orden por ID
+- ✅ GET `/api/orders/customer/:customerId` - Órdenes de cliente
+- ✅ PATCH `/api/orders/:id/status` - Actualizar estado de orden
+- ✅ PATCH `/api/orders/:id/payment-status` - Actualizar estado de pago
+- ✅ Generación de número de orden único (ORD-YYYY-XXXXXX)
+- ✅ Transacciones de Prisma para integridad de datos
+
 ## 🏛️ Características de Arquitectura
 
 ### Patrón Data Access Layer

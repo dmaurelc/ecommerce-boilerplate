@@ -2,6 +2,11 @@ export interface Order {
   id: string;
   orderNumber: string;
   customerId: string;
+  customer?: {
+    id: string;
+    email: string;
+    name?: string | null;
+  };
   items: OrderItem[];
   subtotal: number;
   tax: number;
@@ -13,6 +18,7 @@ export interface Order {
   paymentId?: string;
   shippingAddress: Address;
   billingAddress: Address;
+  notes?: string | null;
   metadata?: Record<string, unknown>;
   createdAt: Date;
   updatedAt: Date;
@@ -20,8 +26,25 @@ export interface Order {
 
 export interface OrderItem {
   id: string;
+  orderId: string;
   productId: string;
+  product?: {
+    id: string;
+    name: string;
+    slug: string;
+    images: Array<{
+      id: string;
+      url: string;
+      altText?: string | null;
+      position?: number;
+    }>;
+  };
   variantId?: string;
+  variant?: {
+    id: string;
+    name: string;
+    options?: Record<string, string> | string;
+  };
   name: string;
   quantity: number;
   price: number;
